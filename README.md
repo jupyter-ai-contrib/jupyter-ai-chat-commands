@@ -8,6 +8,12 @@ This extension is composed of a Python package named `jupyter_ai_chat_commands`
 for the server extension and a NPM package named `@jupyter-ai/chat-commands`
 for the frontend extension.
 
+This package provides 2 commands:
+
+- `@file:<path>`: Add a file as an attachment to a message.
+
+- `/refresh-personas`: Reload local personas defined in `.jupyter/personas`.
+
 ## QUICK START
 
 Everything that follows after this section was from the extension template. We
