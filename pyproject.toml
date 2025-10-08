@@ -3,6 +3,8 @@ requires = [
     "hatchling>=1.5.0",
     "jupyterlab>=4.0.0,<5",
     "hatch-nodejs-version>=0.3.2",
+    # Workaround for https://github.com/jupyter-server/jupyter_releaser/issues/613
+    "virtualenv!=20.35.0",
 ]
 build-backend = "hatchling.build"
 
