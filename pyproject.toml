@@ -63,7 +63,7 @@ exclude = [".github", "binder"]
 path = "jupyter_ai_chat_commands/_version.py"
 
 [tool.hatch.build.hooks.jupyter-builder]
-dependencies = ["hatch-jupyter-builder>=0.5"]
+dependencies = ["hatch-jupyter-builder>=0.5", "virtualenv!=20.35.0"]
 build-function = "hatch_jupyter_builder.npm_builder"
 ensured-targets = [
     "jupyter_ai_chat_commands/labextension/static/style.js",
