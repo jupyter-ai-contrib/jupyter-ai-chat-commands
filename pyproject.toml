@@ -80,10 +80,10 @@ source_dir = "src"
 build_dir = "jupyter_ai_chat_commands/labextension"
 
 [tool.jupyter-releaser.options]
-# Workaround for https://github.com/jupyter-server/jupyter_releaser/issues/613
-version_cmd = "pip uninstall virtualenv && pip install virtualenv!=20.35.0 && hatch version"
+version_cmd = "hatch version"
 
 [tool.jupyter-releaser.hooks]
+before-bump-version = ["pip install hatch virtualenv!=20.35.0"]
 before-build-npm = [
     "python -m pip install 'jupyterlab>=4.0.0,<5'",
     "jlpm",
