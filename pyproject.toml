@@ -26,7 +26,12 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
 ]
-dependencies = ["jupyter_server>=2.4.0,<3", "jupyterlab_chat>=0.17.0,<0.18.0"]
+dependencies = [
+    "jupyter_server>=2.4.0,<3",
+    "jupyterlab_chat>=0.17.0,<0.18.0",
+    "jupyter_ai_router>=0.0.1",
+    "jupyter_ai_persona_manager>=0.0.3",
+]
 dynamic = ["version", "description", "authors", "urls", "keywords"]
 
 [project.optional-dependencies]
