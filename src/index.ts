@@ -4,13 +4,15 @@ import {
 } from '@jupyterlab/application';
 
 import { requestAPI } from './handler';
+import { chatCommandPlugins } from './chat-command-plugins';
 
 /**
  * Initialization data for the @jupyter-ai/chat-commands extension.
  */
 const plugin: JupyterFrontEndPlugin<void> = {
   id: '@jupyter-ai/chat-commands:plugin',
-  description: 'Package providing the set of default chat commands in Jupyter AI.',
+  description:
+    'Package providing the set of default chat commands in Jupyter AI.',
   autoStart: true,
   activate: (app: JupyterFrontEnd) => {
     console.log('JupyterLab extension @jupyter-ai/chat-commands is activated!');
@@ -27,4 +29,4 @@ const plugin: JupyterFrontEndPlugin<void> = {
   }
 };
 
-export default plugin;
+export default [plugin, ...chatCommandPlugins];

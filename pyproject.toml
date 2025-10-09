@@ -1,12 +1,16 @@
 [build-system]
-requires = ["hatchling>=1.5.0", "jupyterlab>=4.0.0,<5", "hatch-nodejs-version>=0.3.2"]
+requires = [
+    "hatchling>=1.5.0",
+    "jupyterlab>=4.0.0,<5",
+    "hatch-nodejs-version>=0.3.2",
+]
 build-backend = "hatchling.build"
 
 [project]
 name = "jupyter_ai_chat_commands"
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
     "Framework :: Jupyter",
     "Framework :: Jupyter :: JupyterLab",
@@ -16,14 +20,16 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
-    "jupyter_server>=2.4.0,<3"
+    "jupyter_server>=2.4.0,<3",
+    "jupyterlab_chat>=0.17.0,<0.18.0",
+    "jupyter_ai_router>=0.0.1",
+    "jupyter_ai_persona_manager>=0.0.3",
 ]
 dynamic = ["version", "description", "authors", "urls", "keywords"]
 
@@ -33,7 +39,7 @@ test = [
     "pytest",
     "pytest-asyncio",
     "pytest-cov",
-    "pytest-jupyter[server]>=0.6.0"
+    "pytest-jupyter[server]>=0.6.0",
 ]
 
 [tool.hatch.version]
@@ -77,10 +83,11 @@ build_dir = "jupyter_ai_chat_commands/labextension"
 version_cmd = "hatch version"
 
 [tool.jupyter-releaser.hooks]
+before-bump-version = ["pip install hatch virtualenv!=20.35.0"]
 before-build-npm = [
     "python -m pip install 'jupyterlab>=4.0.0,<5'",
     "jlpm",
-    "jlpm build:prod"
+    "jlpm build:prod",
 ]
 before-build-python = ["jlpm clean:all"]
 
