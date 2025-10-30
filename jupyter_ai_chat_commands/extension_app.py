@@ -40,21 +40,11 @@ class JaiChatCommandsExtension(ExtensionApp):
         router.observe_chat_init(lambda room_id, ychat: self.on_chat_init(router, room_id))
     
     def on_chat_init(self, router: MessageRouter, room_id: str):
-        router.observe_slash_cmd_msg(room_id, self.on_slash_command)
+        router.observe_slash_cmd_msg(room_id, "refresh-personas", self.on_slash_command)
         self.log.info("Attached router observer.")
     
-    def on_slash_command(self, room_id: str, message: Message):
-        first_word = get_first_word(message.body)
-        assert first_word and first_word.startswith("/")
-
-        command_id = first_word[1:]
-        if command_id == "refresh-personas":
-            self.event_loop.create_task(self.handle_refresh_personas(room_id))
-            return True
-
-        # If command is unrecognized, log an error
-        self.log.warning(f"Unrecognized slash command: '/{command_id}'")
-        return False
+    def on_slash_command(self, room_id: str, command: str, message: Message):
+        self.event_loop.create_task(self.handle_refresh_personas(room_id))
     
     async def handle_refresh_personas(self, room_id: str):
         self.log.info(f"Received /refresh-personas in room '{room_id}'.")
