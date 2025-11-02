@@ -1,6 +1,6 @@
 {
     "name": "@jupyter-ai/chat-commands",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Package providing the set of default chat commands in Jupyter AI.",
     "keywords": [
         "jupyter",
