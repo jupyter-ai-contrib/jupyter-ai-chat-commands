@@ -2,6 +2,22 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.0.4
+
+([Full Changelog](https://github.com/jupyter-ai-contrib/jupyter-ai-chat-commands/compare/v0.0.3...6c0bbe375cf937d9a624603fa06c13f216589275))
+
+### Bugs fixed
+
+- Fix plugin activation by sharing @jupyter/chat package [#8](https://github.com/jupyter-ai-contrib/jupyter-ai-chat-commands/pull/8) ([@Zsailer](https://github.com/Zsailer))
+
+### Contributors to this release
+
+([GitHub contributors page for this release](https://github.com/jupyter-ai-contrib/jupyter-ai-chat-commands/graphs/contributors?from=2025-11-02&to=2025-11-04&type=c))
+
+[@Zsailer](https://github.com/search?q=repo%3Ajupyter-ai-contrib%2Fjupyter-ai-chat-commands+involves%3AZsailer+updated%3A2025-11-02..2025-11-04&type=Issues)
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.0.3
 
 ([Full Changelog](https://github.com/jupyter-ai-contrib/jupyter-ai-chat-commands/compare/v0.0.2...5461dc5043b8529684024707d66b2398747e361e))
@@ -15,8 +31,6 @@
 ([GitHub contributors page for this release](https://github.com/jupyter-ai-contrib/jupyter-ai-chat-commands/graphs/contributors?from=2025-10-30&to=2025-11-02&type=c))
 
 [@dlqqq](https://github.com/search?q=repo%3Ajupyter-ai-contrib%2Fjupyter-ai-chat-commands+involves%3Adlqqq+updated%3A2025-10-30..2025-11-02&type=Issues)
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.0.2
 
