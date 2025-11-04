@@ -112,7 +112,13 @@
             }
         },
         "extension": true,
-        "outputDir": "jupyter_ai_chat_commands/labextension"
+        "outputDir": "jupyter_ai_chat_commands/labextension",
+        "sharedPackages": {
+            "@jupyter/chat": {
+                "bundled": false,
+                "singleton": true
+            }
+        }
     },
     "eslintIgnore": [
         "node_modules",
