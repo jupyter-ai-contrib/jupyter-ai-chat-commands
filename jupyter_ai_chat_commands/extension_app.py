@@ -41,17 +41,54 @@ class JaiChatCommandsExtension(ExtensionApp):
     
     def on_chat_init(self, router: MessageRouter, room_id: str):
         router.observe_slash_cmd_msg(room_id, "refresh-personas", self.on_slash_command)
+        router.observe_slash_cmd_msg(room_id, "restart", self.on_restart_command)
         self.log.info("Attached router observer.")
-    
+
     def on_slash_command(self, room_id: str, command: str, message: Message):
         self.event_loop.create_task(self.handle_refresh_personas(room_id))
-    
+
     async def handle_refresh_personas(self, room_id: str):
         self.log.info(f"Received /refresh-personas in room '{room_id}'.")
         persona_manager = await self._get_persona_manager(room_id)
         self.log.info(f"Retrieved PersonaManager in room '{room_id}'.")
         await persona_manager.refresh_personas()
         self.log.info(f"Handled /refresh-personas in room '{room_id}'.")
+
+    def on_restart_command(self, room_id: str, command: str, message: Message):
+        self.event_loop.create_task(self.handle_restart(room_id, message))
+
+    async def handle_restart(self, room_id: str, message: Message):
+        """
+        Handle the `/restart` slash command by restarting the single persona the
+        message is routed to. The target persona ID travels in the message's
+        metadata under `to_persona` — the same key the chat input's persona
+        picker stamps onto every outgoing message — so `/restart` restarts
+        exactly the persona the command was addressed to.
+
+        If no target persona is named (e.g. "No one" is selected), a system
+        message explains that `/restart` must be routed to a persona.
+        """
+        self.log.info(f"Received /restart in room '{room_id}'.")
+        persona_manager = await self._get_persona_manager(room_id)
+
+        persona_id = (message.metadata or {}).get(
+            PersonaManager.TO_PERSONA_METADATA_KEY
+        )
+        if not persona_id:
+            persona_manager.send_system_message(
+                "`/restart` must be routed to a persona. Select a persona in the "
+                "chat toolbar, then send `/restart` again to restart it."
+            )
+            self.log.info(f"Ignored /restart with no target persona in room '{room_id}'.")
+            return
+
+        restarted = await persona_manager.restart_persona(persona_id)
+        if not restarted:
+            persona_manager.send_system_message(
+                f"Could not restart persona `{persona_id}`: it is not available "
+                "in this chat."
+            )
+        self.log.info(f"Handled /restart in room '{room_id}'.")
 
 
     async def _get_router(self) -> MessageRouter:

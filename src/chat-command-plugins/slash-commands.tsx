@@ -12,6 +12,7 @@ import {
   ChatCommand
 } from '@jupyter/chat';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 const SLASH_COMMAND_PROVIDER_ID = '@jupyter-ai/core:slash-command-provider';
 
@@ -46,6 +47,13 @@ export class SlashCommandProvider implements IChatCommandProvider {
       providerId: this.id,
       description: 'Refresh available personas',
       icon: <RefreshIcon />,
+      spaceOnAccept: true
+    },
+    {
+      name: '/restart',
+      providerId: this.id,
+      description: 'Restart the selected persona',
+      icon: <RestartAltIcon />,
       spaceOnAccept: true
     }
   ];
